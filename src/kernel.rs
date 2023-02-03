@@ -140,10 +140,10 @@ where
 
         Ok(buf)
     }
-    // /// Blocking version of `GpuBuffer::read_vec()`.
-    // pub fn read_vec_blocking(&self) -> BufferResult<Vec<T>> {
-    //     futures::executor::block_on(self.read_vec())
-    // }
+    /// Blocking version of `GpuBuffer::read_vec()`.
+    pub fn read_vec_blocking(&self) -> BufferResult<Vec<T>> {
+        futures::executor::block_on(self.read_vec())
+    }
 }
 
 impl<'sha, 'res> Program<'sha, 'res> {
