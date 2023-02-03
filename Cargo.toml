@@ -1,0 +1,19 @@
+[package]
+name = "gpgpu-test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wgpu = "0.15.0"
+futures = "0.3.25"
+log = "0.4.17"
+bytemuck = "1.7"
+thiserror = "1.0.38"
+rayon = "1.6.1"
+lazy_static = "1.4.0"
+
+[dev-dependencies]
+pretty_env_logger = "0.4.0"
+
