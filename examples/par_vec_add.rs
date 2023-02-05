@@ -38,7 +38,13 @@ pub fn run_gpu(
 
     let kernel = Kernel::new(&FW, program);
 
-    kernel.enqueue(size as u32 / THREADING as u32, 1, 1);
+    let work_size;
+    if (size as u32 / THREADING as u32) < 65000 {
+        work_size = size as u32 / THREADING as u32;
+    } else {
+        work_size = 65000;
+    }
+    kernel.enqueue(work_size, 1, 1);
 
     let result_vec_mult = gpu_vec_mult.read_vec_blocking().unwrap();
 
@@ -48,7 +54,7 @@ pub fn run_gpu(
 pub fn run() {
     let shader = Arc::new(Shader::from_wgsl_file(&FW, "./examples/add.wgsl").unwrap());
 
-    let size = 32000usize;
+    let size = 3200000usize;
     let work_per_thread = size / THREADING;
 
     let a = (0..size as u32).into_iter().collect::<Vec<u32>>();
